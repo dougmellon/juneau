@@ -1,4 +1,6 @@
-use std::fs::ReadDir;
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
+
 use crate::csv_parser::parse_csv_file;
 use crate::prophet_model::prophet_model;
 
@@ -33,7 +35,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         });
     }
 
-    println!("{:?}", results[0]);
+    println!("{:?}", results);
 
     Ok(())
 }
