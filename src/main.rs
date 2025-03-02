@@ -3,6 +3,7 @@ static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 
 use crate::csv_parser::parse_csv_file;
 use crate::prophet_model::prophet_model;
+use std::time::Instant; //TODO: Set up Hyperfine for benchmarking
 
 mod csv_parser;
 mod prophet_model;
@@ -18,7 +19,9 @@ pub struct ProphetPredictionResult {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let dataset = parse_csv_file("src/datasets/single_dataset.csv")?;
+    let start_time = Instant::now(); // Very rough benchmarking that will be replaced
+    
+    let dataset = parse_csv_file("src/datasets/test_dataset.csv")?;
 
     let mut results: Vec<ProphetPredictionResult> = Vec::new();
 
@@ -35,7 +38,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         });
     }
 
-    println!("{:?}", results);
+    let duration = start_time.elapsed();
+    println!("Execution time: {:?}", duration);
 
     Ok(())
 }
