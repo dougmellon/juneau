@@ -10,6 +10,7 @@ pub struct RowData {
     pub values: Vec<f64>,
 }
 
+// TODO: Need to break up the CSV parser into separate components
 pub fn parse_csv_file<P: AsRef<Path>>(
     path: P,
 ) -> Result<Vec<RowData>, Box<dyn Error>> {
@@ -35,7 +36,7 @@ pub fn parse_csv_file<P: AsRef<Path>>(
 
         let mut row_timestamps = Vec::new();
         let mut row_values = Vec::new();
-        
+
         for (i, field_bytes) in record.iter().enumerate().skip(1) {
             if field_bytes.is_empty() {
                 break;
