@@ -8,7 +8,6 @@ pub fn prophet_model (timestamps: Vec<i64>, values: Vec<f64>) -> Predictions {
     
     prophet.fit(data.expect("Failed to gather data to fit"), Default::default()).expect("Failed to fit model");
     
-    // Make in-sample predictions
     let predictions = prophet.predict(None).expect("Failed to make predictions");
     
     println!("Predictions: {:?}", predictions.yhat.point);
