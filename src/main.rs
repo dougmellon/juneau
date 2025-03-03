@@ -36,7 +36,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = Cli::parse();
 
     if cli.model.to_lowercase() != "prophet" {
-        eprintln!("Error: Only 'prophet' model is supported at this time.");
+        eprintln!("Only Prophet is supported right now. I will implement more models soon.");
         std::process::exit(1);
     }
 
