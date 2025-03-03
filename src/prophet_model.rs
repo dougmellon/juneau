@@ -2,6 +2,7 @@ use augurs::prophet::{Prophet, TrainingData, wasmstan::WasmstanOptimizer, Predic
 
 // TODO: Need to establish a check to verify data size. https://github.com/facebook/prophet/issues/783
 pub fn prophet_model (timestamps: Vec<i64>, values: Vec<f64>) -> Predictions {
+    // TODO: Additional support https://docs.augu.rs/tutorials/forecasting-with-prophet.html
     let data = TrainingData::new(timestamps, values);
 
     let optimizer = WasmstanOptimizer::new();

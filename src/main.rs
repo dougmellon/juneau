@@ -45,10 +45,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut all_results: Vec<ProphetPredictionResult> = Vec::new();
 
     for (file_idx, data_file) in cli.data.iter().enumerate() {
-        println!("Processing file #{}: {}", file_idx + 1, data_file);
-
         let dataset = parse_csv_file(data_file)?;
-        
+
         for (row_idx, row) in dataset.iter().enumerate() {
             let prediction = prophet_model(row.timestamps.clone(), row.values.clone());
 
